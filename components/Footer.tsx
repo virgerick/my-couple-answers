@@ -5,7 +5,7 @@ interface Props { }
 
 export default function Footer({ }: Props): ReactElement {
   return (
-    <footer className={styles.footer}>
+    <footer className={style.footer}>
       <a
         href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
         target="_blank"
