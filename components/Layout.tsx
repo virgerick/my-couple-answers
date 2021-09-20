@@ -2,6 +2,7 @@ import Head from "next/head";
 import React, { ReactElement } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import style from '../styles/Layout.module.css'
 
 interface Props {
   children: any;
@@ -16,7 +17,7 @@ export default function Layout({children}: Props): ReactElement {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main>{children}</main>
+      <main className={style.main}>{children}</main>
       <Footer />
     </ >
   );
