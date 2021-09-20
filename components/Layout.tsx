@@ -2,6 +2,7 @@ import Head from "next/head";
 import React, { ReactElement } from "react";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import style from '../styles/Layout.module.css'
 
 import style from "../styles/Layout.module.css";
 
