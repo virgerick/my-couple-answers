@@ -4,8 +4,6 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import style from '../styles/Layout.module.css'
 
-import style from "../styles/Layout.module.css";
-
 interface Props {
   children: any;
 }
