@@ -10,17 +10,15 @@ export default function TopBar({}: Props): ReactElement {
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
         <Link href="/">
-          <Navbar.Brand>Home</Navbar.Brand>
+          <a className="navbar-brand">Home</a>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Link href="/">
-              <Nav.Link>Features</Nav.Link>
+              <a className="nav-link">Features</a>
             </Link>
-
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+            <NavDropdown title="Dropdown" id="collasible-nav-dropdown"> 
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -33,10 +31,12 @@ export default function TopBar({}: Props): ReactElement {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">Iniciar session</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Registrar me
-            </Nav.Link>
+            <Link href="/login">
+              <a className="nav-link">Iniciar session</a>
+            </Link>
+            <Link href="/register">
+              <a href="" className="nav-link">Registrar me</a>
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
