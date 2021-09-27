@@ -5,7 +5,7 @@ interface LoginState {
   password: string;
   rememberMe?: boolean;
 }
-export default function login() {
+export default function Login() {
   const [loginForm, setLoginForm] = useState<LoginState>({
     email: "",
     password: "",
