@@ -11,6 +11,9 @@ interface Props {
 export default function TopBar({}: Props): ReactElement {
   const setting = useAppSetting();
   const [user, loading, error] = useAuthState(firebase.auth());
+  const signOut=()=>{
+    firebase.
+  }
   return (
     <Navbar
       collapseOnSelect
