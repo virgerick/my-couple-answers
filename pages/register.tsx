@@ -2,8 +2,9 @@ import React from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import useForm from "../hooks/useForm";
 import Link from "next/link";
+import { NextPage } from "next";
 
-interface Props {}
+
 interface RegisterState {
   name: string;
   lastname: string;
@@ -12,7 +13,7 @@ interface RegisterState {
   confirmPassword: string;
 }
 
-const Register = (props: Props) => {
+const Register: NextPage = () => {
   const {
     register,
     formState: { email, confirmPassword, name, lastname, password },
@@ -94,11 +95,12 @@ const Register = (props: Props) => {
         </Button>
       </Form>
       <div className="mt-3">
-           <Link href="/login">
-        <a className="text-decoration-none">Already have an account? click here to sign in</a>
-      </Link>
+        <Link href="/login">
+          <a className="text-decoration-none">
+            Already have an account? click here to sign in
+          </a>
+        </Link>
       </div>
-     
     </Container>
   );
 };

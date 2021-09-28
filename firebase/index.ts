@@ -10,10 +10,7 @@ const clientCredentials = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
-console.log('before',firebase.apps);
-
 if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials);
 }
-console.log('after',firebase.apps);
 export default firebase;

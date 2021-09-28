@@ -1,13 +1,14 @@
+import { NextPage } from "next";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
-import SignInScreen from '../components/auth';
+import SignInScreen from "../components/auth";
 interface LoginState {
   email: string;
   password: string;
   rememberMe?: boolean;
 }
-export default function Login() {
+const Login: NextPage = () => {
   const [loginForm, setLoginForm] = useState<LoginState>({
     email: "",
     password: "",
@@ -75,13 +76,12 @@ export default function Login() {
           Iniciar Session
         </Button>
       </Form>
-      <SignInScreen/>
+      <SignInScreen />
       <div className="mt-3">
         <Link href="/register">
-        <a className="link-primary">Do not have an account?</a>
-      </Link>
+          <a className="link-primary">Do not have an account?</a>
+        </Link>
       </div>
-      
     </Container>
   );
-}
+};
