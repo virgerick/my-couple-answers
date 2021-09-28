@@ -85,3 +85,4 @@ const Login: NextPage = () => {
     </Container>
   );
 };
+export default Login
