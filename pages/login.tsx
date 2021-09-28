@@ -1,5 +1,7 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
+import SignInScreen from '../components/auth';
 interface LoginState {
   email: string;
   password: string;
@@ -17,7 +19,7 @@ export default function Login() {
     console.log(loginForm);
   };
   return (
-    <Container >
+    <Container>
       <h1>Login</h1>
       <Form onSubmit={handleOnSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -73,6 +75,13 @@ export default function Login() {
           Iniciar Session
         </Button>
       </Form>
+      <SignInScreen/>
+      <div className="mt-3">
+        <Link href="/register">
+        <a className="link-primary">Do not have an account?</a>
+      </Link>
+      </div>
+      
     </Container>
   );
 }

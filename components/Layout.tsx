@@ -11,6 +11,7 @@ interface Props {
 
 export default function Layout({ children }: Props): ReactElement {
   const appSetting = useAppSetting();
+
   return (
     <>
       <Head>

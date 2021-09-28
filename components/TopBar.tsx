@@ -1,16 +1,29 @@
 import React, { ReactElement } from "react";
 import Link from "next/link";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import useAppSetting from "../hooks/useAppSetting";
+import { useAuthState } from "react-firebase-hooks/auth";
+import firebase from "../firebase";
 interface Props {
   //   brand: { icon: any; title: string };
 }
 
 export default function TopBar({}: Props): ReactElement {
+  const setting = useAppSetting();
+  const [user, loading, error] = useAuthState(firebase.auth());
   return (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="primary"
+      variant="dark"
+      sticky="top"
+    >
       <Container>
         <Link href="/">
-          <a className="navbar-brand">Home</a>
+          <a className="navbar-brand" title={setting.descripcion}>
+            {setting.name}
+          </a>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -18,26 +31,27 @@ export default function TopBar({}: Props): ReactElement {
             <Link href="/">
               <a className="nav-link">Features</a>
             </Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown"> 
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
           </Nav>
-          <Nav>
-            <Link href="/login">
-              <a className="nav-link">Iniciar session</a>
-            </Link>
-            <Link href="/register">
-              <a href="" className="nav-link">Registrar me</a>
-            </Link>
-          </Nav>
+          {!user ? (
+            <Nav>
+              <Link href="/login">
+                <a className="nav-link">Iniciar session</a>
+              </Link>
+              <Link href="/register">
+                <a href="" className="nav-link">
+                  Registrar me
+                </a>
+              </Link>
+            </Nav>
+          ) : (
+            <Nav>
+              <NavDropdown title={user.email} id="collasible-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Perfil</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item>Cerrar session</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
