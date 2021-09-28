@@ -21,7 +21,7 @@ export default function Layout({ children }: Props): ReactElement {
       </Head>
       <TopBar />
       <Container>
-        <main className="pt-5">{children}</main>
+        <main className="py-5">{children}</main>
         <Footer />
       </Container>
     </>
