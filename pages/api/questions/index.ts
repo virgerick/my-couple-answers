@@ -51,7 +51,7 @@ export default async function handler(
   } catch (error) {
     res
       .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
-      .send({ success: false, message: error });
+      .send({ success: false, result: error });
   }
 
   function methodNotSuported() {
