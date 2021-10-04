@@ -5,7 +5,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import HttpStatusCode from "../../../enums/HttpStatusCode";
 import HTTPMethod from "../../../enums/HTTPMethod";
 const { GET, POST, PUT } = HTTPMethod;
-type Response = {
+export type Response = {
   message?: string | string[];
   success: boolean;
   result?: Question | any;
@@ -40,13 +40,9 @@ export default async function handler(
         break;
       case POST:
         break;
-      case PUT:
-        if (!query.id || !body) return methodNotSuported();
-
-        break;
 
       default:
-        methodNotSuported();
+        methodNotSuported(res);
     }
   } catch (error) {
     res
@@ -54,9 +50,10 @@ export default async function handler(
       .send({ success: false, result: error });
   }
 
-  function methodNotSuported() {
-    res
-      .status(HttpStatusCode.METHOD_NOT_ALLOWED)
-      .send({ success: false, message: ["Method not allowed"] });
-  }
+  
+}
+ export function methodNotSuported( res: NextApiResponse<Response>) {
+  res
+    .status(HttpStatusCode.METHOD_NOT_ALLOWED)
+    .send({ success: false, message: ["Method not allowed"] });
 }
