@@ -1,16 +1,17 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import useForm from "../hooks/useForm";
 import Link from "next/link";
 import { NextPage } from "next";
 
-
+import { Repository } from "../repository";
 interface RegisterState {
+  id?: string;
   name: string;
   lastname: string;
   email: string;
-  password: string;
-  confirmPassword: string;
+  password?: string;
+  confirmPassword?: string;
 }
 
 const Register: NextPage = () => {
@@ -24,10 +25,17 @@ const Register: NextPage = () => {
     password: "",
     confirmPassword: "",
   });
+  const repository = new Repository<RegisterState>("users");
+  const handlerSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const id = "hello world";
+    // validate user information for prevent duplicity user registration
+    await repository.insertOrUpdateAsync(id, { id, email, name, lastname });
+  };
   return (
     <Container>
       <h1>Register</h1>
-      <Form>
+      <Form onSubmit={handlerSubmit}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control

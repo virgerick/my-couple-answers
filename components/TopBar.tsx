@@ -32,15 +32,15 @@ export default function TopBar({}: Props): ReactElement {
       <Container>
         <Link href="/">
           <a className="navbar-brand" title={setting.descripcion}>
-            {setting.name}
+            MCA
           </a>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link href="/">
+            {/* <Link href="/">
               <a className="nav-link">Features</a>
-            </Link>
+            </Link> */}
           </Nav>
           {!user ? (
             <Nav>

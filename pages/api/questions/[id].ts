@@ -3,7 +3,7 @@ import { methodNotSuported, Question, Response } from ".";
 import HTTPMethod from "../../../enums/HTTPMethod";
 import HttpStatusCode from "../../../enums/HttpStatusCode";
 
-import {Repository} from "../../../repository/Repository";
+import {Repository} from "../../../repository";
 const QuestionRepository=new Repository<Question>("votes");
 export default async function handler(
   req: NextApiRequest,
@@ -14,7 +14,7 @@ export default async function handler(
   
       switch (method) {
         case HTTPMethod.GET:
-         const data =await QuestionRepository.getById(query.id.toString())
+         const data =await QuestionRepository.getByIdAsync(query.id.toString())
           res.status(HttpStatusCode.OK).send({success:true,result:data})
          break;
         case HTTPMethod.PUT:
