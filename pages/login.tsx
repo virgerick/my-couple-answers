@@ -12,7 +12,7 @@ interface LoginState {
 }
 const Login: NextPage = () => {
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<string>(null);
+  const [errors, setErrors] = useState<string>("");
   const router = useRouter();
   const [loginForm, setLoginForm] = useState<LoginState>({
     email: "",
