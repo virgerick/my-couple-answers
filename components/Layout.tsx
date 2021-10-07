@@ -13,7 +13,7 @@ export default function Layout({ children }: Props): ReactElement {
   const appSetting = useAppSetting();
 
   return (
-    <div>
+    <>
       <Head>
         <title>{appSetting.name}</title>
         <meta name="description" content={appSetting.descripcion} />
@@ -23,10 +23,12 @@ export default function Layout({ children }: Props): ReactElement {
         {appSetting.name}
       </div>
       <TopBar />
-      <Container>
+      <Container style={{
+        minHeight:"65vh"
+      }}>
         <main className="py-5">{children}</main>
-        <Footer />
       </Container>
-    </div>
+      <Footer />
+    </>
   );
 }

@@ -11,9 +11,21 @@ export class Repository<T> {
     const data = await result.docs.map((x) => x.data() as T);
     return data;
   };
+
   getByIdAsync = async (id: string): Promise<T> => {
     const result = await this._collectionRef.doc(id).get();
     const data = (await result.data()) as T;
+    return data;
+  };
+  getWhere = async (
+    fieldPath: string | firebase.firestore.FieldPath,
+    opStr: firebase.firestore.WhereFilterOp,
+    value: any 
+  ): Promise<Array<T>> => {
+    const result = await this._collectionRef
+      .where(fieldPath, opStr, value)
+      .get();
+    const data = await result.docs.map((x) => x.data() as T);
     return data;
   };
   insertAsync = async (model: T): Promise<void> => {

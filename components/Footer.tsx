@@ -5,7 +5,7 @@ interface Props {}
 
 export default function Footer({}: Props): ReactElement {
   return (
-    <footer className="fixed-bottom py-3 bg-light">
+    <footer className="py-3 bg-light">
       <Nav>
         <Container>
           <Nav.Link
