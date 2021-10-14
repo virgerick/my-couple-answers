@@ -10,6 +10,7 @@ const Home: NextPage = (props) => {
       <main>
         <h1>{appSetting.name}</h1>
         <p>{appSetting.descripcion}</p>
+        <br />
       </main>
     </div>
   );

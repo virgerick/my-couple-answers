@@ -10,10 +10,12 @@ interface LoginState {
   password: string;
   rememberMe?: boolean;
 }
+
 const Login: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<string>("");
   const router = useRouter();
+
   const [loginForm, setLoginForm] = useState<LoginState>({
     email: "",
     password: "",
@@ -35,7 +37,7 @@ const Login: NextPage = () => {
         return setErrors("invalid credentials");
       }
         setErrors(error.message);
-      
+
     } finally {
       setLoading(false);
     }

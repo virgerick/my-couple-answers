@@ -56,9 +56,14 @@ export default function TopBar({}: Props): ReactElement {
           ) : (
             <Nav>
               <NavDropdown title={user.email} id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Perfil</NavDropdown.Item>
+
+                <Link href="/profile">
+                  <a className="dropdown-item">Perfile</a>
+                </Link>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={signOut}>Cerrar session</NavDropdown.Item>
+                <NavDropdown.Item onClick={signOut}>
+                  Cerrar session
+                </NavDropdown.Item>
               </NavDropdown>
             </Nav>
           )}

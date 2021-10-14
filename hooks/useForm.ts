@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function useForm<T>(initialState: T|(()=>T) ) {
+function useForm<T>(initialState: T | (() => T)) {
   const [formState, setFormState] = useState<T>(initialState);
   const register = (e: any) => {
     const { name, value } = e.target;
