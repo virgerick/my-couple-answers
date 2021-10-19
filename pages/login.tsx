@@ -4,7 +4,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Form, Button, Container, Alert } from "react-bootstrap";
 import Loading from "../components/Loading";
-import firebase from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 interface LoginState {
   email: string;
   password: string;
@@ -25,19 +26,15 @@ const Login: NextPage = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const auth = firebase?.auth();
-      const userCredential = await auth.signInWithEmailAndPassword(
-        email,
-        password
-      );
+      const userCredential = signInWithEmailAndPassword(auth, email, password);
+
       router.push("/");
     } catch (error: any) {
       console.log(error);
-      if (error.code==="auth/user-not-found") {
+      if (error.code === "auth/user-not-found") {
         return setErrors("invalid credentials");
       }
-        setErrors(error.message);
-
+      setErrors(error.message);
     } finally {
       setLoading(false);
     }

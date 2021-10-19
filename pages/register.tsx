@@ -3,12 +3,16 @@ import { Alert, Button, Container, Form } from "react-bootstrap";
 import useForm from "../hooks/useForm";
 import Link from "next/link";
 import { NextPage } from "next";
-import firebase from "../firebase";
+import { auth } from "../firebase";
 
 import { useRouter } from "next/dist/client/router";
 import Loading from "../components/Loading";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { route } from "next/dist/server/router";
+import {
+  createUserWithEmailAndPassword,
+  updateCurrentUser,
+} from "firebase/auth";
 interface RegisterState {
   id?: string;
   name: string;
@@ -21,15 +25,15 @@ interface RegisterState {
 const Register: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(null);
-  const [user, userLoading, error] = useAuthState(firebase.auth());
+  const [user, userLoading, error] = useAuthState(auth);
   const router = useRouter();
   useEffect(() => {
     console.log(user);
-    
+
     if (user) {
       router.push("/");
     }
-  },[]);
+  }, []);
   const {
     register,
     formState: { email, confirmPassword, name, lastname, password },
@@ -45,17 +49,21 @@ const Register: NextPage = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const auth = await firebase.auth();
-      const credencial = await auth.createUserWithEmailAndPassword(
+      const credencial = await createUserWithEmailAndPassword(
+        auth,
         email,
         password as string
       );
 
-      const { user } = credencial;
-      await user?.updateProfile({
-        displayName: `${name} ${lastname}`,
-        photoURL: null,
-      });
+      let { user } = credencial;
+      user = {
+        ...user,
+        ...{
+          displayName: `${name} ${lastname}`,
+          photoURL: null,
+        },
+      };
+      await updateCurrentUser(auth, user);
       const id = user?.uid as string;
       await router.push("/profile");
     } catch (error: any) {

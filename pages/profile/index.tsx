@@ -1,12 +1,12 @@
-import firebase from '../../firebase'
+import {auth} from '../../firebase'
 import { NextPage } from "next";
 import { Container } from "react-bootstrap";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 interface Props {}
 const Profile: NextPage = ({}: Props) => {
-  const [user, userLoading] = useAuthState(firebase.auth());
-  
+  const [user, userLoading] = useAuthState(auth);
+
   return (
     <Container>
       <label htmlFor="">{user?.uid}</label>

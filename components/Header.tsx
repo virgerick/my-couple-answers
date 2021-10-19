@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import useAppSetting from "../hooks/useAppSetting";
 import { useAuthState } from "react-firebase-hooks/auth";
-import firebase from "../firebase";
+import {auth} from "../firebase";
 import { useRouter } from "next/dist/client/router";
 interface Props {
   //   brand: { icon: any; title: string };
@@ -11,11 +11,11 @@ interface Props {
 
 export default function Header({}: Props): ReactElement {
   const setting = useAppSetting();
-  const [user, loading, error] = useAuthState(firebase.auth());
+  const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
   const signOut = async () => {
     try {
-      await firebase.auth().signOut();
+      await auth.signOut();
       router.push("/login");
     } catch (error) {
       console.error(error);
