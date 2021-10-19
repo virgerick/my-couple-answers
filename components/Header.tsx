@@ -9,7 +9,7 @@ interface Props {
   //   brand: { icon: any; title: string };
 }
 
-export default function TopBar({}: Props): ReactElement {
+export default function Header({}: Props): ReactElement {
   const setting = useAppSetting();
   const [user, loading, error] = useAuthState(firebase.auth());
   const router = useRouter();
@@ -38,9 +38,11 @@ export default function TopBar({}: Props): ReactElement {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            {/* <Link href="/">
-              <a className="nav-link">Features</a>
-            </Link> */}
+            {user && (
+              <Link href="/form">
+                <a className="nav-link">Forms</a>
+              </Link>
+            )}
           </Nav>
           {!user ? (
             <Nav>
@@ -56,7 +58,6 @@ export default function TopBar({}: Props): ReactElement {
           ) : (
             <Nav>
               <NavDropdown title={user.email} id="collasible-nav-dropdown">
-
                 <Link href="/profile">
                   <a className="dropdown-item">Perfile</a>
                 </Link>
