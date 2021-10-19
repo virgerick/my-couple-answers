@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { incremented,amountAdded } from "../app/counter_slice";
 interface Props {}
 
-export const counter = (props: Props) => {
+export const Counter = (props: Props) => {
   const count = useAppSelector((state) => state.counter.value);
   const dispatch = useAppDispatch();
   const handlerClic = () => {
@@ -23,4 +23,4 @@ export const counter = (props: Props) => {
   );
 };
 
-export default counter;
+export default Counter;
